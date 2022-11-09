@@ -16,6 +16,6 @@
 | H | Add/remove 'Normal sudoku rules apply.' header |
 | ⋮ | Add/remove bullets to rules list |
 | ↨ | Add/remove line breaks between rules |
-| ⚫ | Change bullet style |
+| • | Change bullet style |
 
 
