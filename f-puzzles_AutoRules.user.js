@@ -28,11 +28,17 @@
 		'Antiking':          
 			'Cells that are a chess king\'s move apart must not contain the same digit.',
 
+		'AntiPalindrome':          
+			'Digits equidistant from the marked centerpoint of red lines sum to 10.',
+
 		'Arrow':	     	   
 			'Digits along an arrow must sum to that arrow\'s circled digit.',
 
 		'Between Line':	   
 			'Digits on lines connecting circles must lie between the circled digits numerically.',
+
+		'Clock':	     	   	
+			'Adjacent digits on yellow lines differ by either 2 or 7.',
 
 		'Clone':	     	   	
 			'Areas made up of grey cells containing circles are clones. Cloned areas must be identical.',
