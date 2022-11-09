@@ -45,7 +45,8 @@
 			let ruleset = '';
 
 			let head = (rulesFmts.bullets) ? bullet : '';
-			head += 'Normal sudoku rules apply.';
+			head += (getCells().some(a => a.region !== (Math.floor(a.i / regionH) * regionH) + Math.floor(a.j / regionW))) ? 'Irregular ' : 'Normal ';
+			head += 'sudoku rules apply.';
 			head += (rulesFmts.lineBreaks) ? '\n\n' : '\n';
 
 			for (let constraint in rules) {

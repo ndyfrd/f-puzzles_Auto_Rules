@@ -2,6 +2,7 @@
 
 * This script adds a 'Generate Ruleset' button to the 'Edit Info' popup of f-puzzles. 
 * This button will generate a ruleset based on the constraints in the grid.
+* Generated rules assume standard 9x9 sudoku. Edit the rules to fit non-standard grids.
 
 <br>
 
