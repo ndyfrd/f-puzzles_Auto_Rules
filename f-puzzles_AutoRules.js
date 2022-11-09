@@ -207,7 +207,7 @@
 				if (toggleBulletsButton.hovering())
 					bullet = (currB === bullets.length - 1) ? bullets[0] : bullets[currB + 1];
 					toggleBulletsButton.title = bullet;
-					generateRuleset();
+					if (rulesFmts.bullets) generateRuleset();
 			}
 
 			rulesFmts = { header: false, bullets: false, lineBreaks: false };
