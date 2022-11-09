@@ -131,12 +131,11 @@
 
 	const doShim = function() {
 
-		let infoBox = popups['editinfo'];
 		let bullets = [ ' \u{2022} ', ' \u{25E6} ', ' \u{25FB} ', ' \u{25FE} ',' \u{25C8} ', ' \u{27A4} ',
 					    ' \u{2740} ', ' \u{2716} ', ' \u{2605} ', ' \u{21E8} ', ' \u{2665} ' ];
 		let bullet = bullets[0];
 		let rulesFmts = { header: false, bullets: false, lineBreaks: false };
-		let fmtBtnX = canvas.width/2 - infoBox.w/2 + buttonLH + 25;
+		let fmtBtnX = canvas.width/2 - popups['editinfo'].w/2 + buttonLH + 25;
 		let fmtBtnY = canvas.height/2 + 235;
 		let fmtBtns = { 'AddHeader': 'H',
 		                'AddLineBreaks': ' \u{2B0D} ',
