@@ -9,12 +9,11 @@
 
 <br>
 
-> *Note: It is possible to edit the rules by changing the 'User Edit' section of the script. The rules will appear in the order they are written in the script (currently alphabetical).*
+> *Note: It is possible to edit the default rule wording by (carefully) changing the 'User Edit' section of the script. The rules will appear in the order they are written in the script (currently alphabetical).*
 
 <br>
 
-
-* To generate rules click one of the first 3 buttons. A ruleset with the indicated formatting will be generated. The 4th button is to choose the bullet type.
+* To generate rules click one of the first 3 buttons. A ruleset with the indicated formatting will be generated.
 * The buttons also toggle the formatting options.
 
 |Button|Action|
@@ -23,5 +22,6 @@
 | ⋮ | Add/remove bullets to rules list |
 | ↨ | Add/remove line breaks between rules |
 | • | Change bullet style |
+| ⌧ | Clear ruleset and formatting |
 
 

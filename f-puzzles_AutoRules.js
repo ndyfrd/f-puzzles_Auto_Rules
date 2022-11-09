@@ -141,7 +141,8 @@
 		let fmtBtns = { 'AddHeader': 'H',
 						'AddLineBreaks': ' \u{2B0D} ',
 						'AddBullets':  '\u{22EE} ',
-						'ToggleBullets': ' \u{2022} '}
+						'ToggleBullets': ' \u{2022} ',
+						'Delete': ' \u{2327} '}
 
 		for (let btn in fmtBtns) {
 			buttons.push(new button(fmtBtnX, fmtBtnY, buttonLH, buttonLH, ['Edit Info'], btn, fmtBtns[btn]));
@@ -208,6 +209,14 @@
 					bullet = (currB === bullets.length - 1) ? bullets[0] : bullets[currB + 1];
 					toggleBulletsButton.title = bullet;
 					if (rulesFmts.bullets) generateRuleset();
+			}
+
+			const deleteButton = buttons[buttons.findIndex(a => a.id === 'Delete')];
+			deleteButton.click = function() { 
+				if (deleteButton.hovering()) {
+					document.getElementById('ruleset').value = '';
+					rulesFmts = { header: false, bullets: false, lineBreaks: false };
+				}
 			}
 
 			rulesFmts = { header: false, bullets: false, lineBreaks: false };
