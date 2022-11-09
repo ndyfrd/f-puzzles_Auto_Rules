@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name		 Fpuzzles_KB
+// @name		 Fpuzzles_Auto_Rules
 // @namespace	 http://tampermonkey.net/
-// @version		 2.0
-// @description  Makes f-puzzles more keyboard-centric
+// @version		 1.0
+// @description  Enables automatic generation of puzzle ruleset 
 // @author		 Ennead
 // @match		 https://*.f-puzzles.com/*
 // @match		 https://f-puzzles.com/*
