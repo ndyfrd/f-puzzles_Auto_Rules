@@ -13,9 +13,9 @@
 
 |Button|Action|
 | --- | --- |
-| H | Add 'Normal sudoku rules apply.' header |
-| ┋ | Add bullets to rules list |
-| ↨ | Add line breaks between rules |
+| H | Add/remove 'Normal sudoku rules apply.' header |
+| ┋ | Add/remove bullets to rules list |
+| ↨ | Add/remove line breaks between rules |
 | ⚫ | Change bullet style |
 
 
