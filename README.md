@@ -1,0 +1,1 @@
+# f_puzzles_Auto_Rules
