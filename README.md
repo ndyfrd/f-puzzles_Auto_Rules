@@ -14,7 +14,7 @@
 <br>
 
 
-* To generate rules click one of the first 3 buttons. A ruleset with the indicated formatting will be generated.
+* To generate rules click one of the first 3 buttons. A ruleset with the indicated formatting will be generated. The 4th button is to choose the bullet type.
 * The buttons also toggle the formatting options.
 
 |Button|Action|
