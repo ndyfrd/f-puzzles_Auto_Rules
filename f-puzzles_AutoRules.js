@@ -20,7 +20,7 @@
 
 		let infoBox = popups['editinfo'];
 		infoBox.h = 700;
-		let bullets = [ ' \u{2022} ', ' \u{25E6} ', ' \u{25FB} ', ' \u{2610} ',' \u{25C8} ', ' \u{27A4} ',
+		let bullets = [ ' \u{2022} ', ' \u{25E6} ', ' \u{25FB} ', ' \u{25FE} ',' \u{25C8} ', ' \u{27A4} ',
 					    ' \u{2740} ', ' \u{2716} ', ' \u{2605} ', ' \u{21E8} ', ' \u{2665} ' ];
 		let bullet = bullets[0];
 		let rulesFmts = { header: false, bullets: false, lineBreaks: false };
