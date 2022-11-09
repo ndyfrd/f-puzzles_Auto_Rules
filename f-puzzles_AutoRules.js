@@ -123,32 +123,30 @@
 
 
 
+
+
+
 (function() {
 	'use strict';
 
 	const doShim = function() {
 
 		let infoBox = popups['editinfo'];
-		infoBox.h = 700;
 		let bullets = [ ' \u{2022} ', ' \u{25E6} ', ' \u{25FB} ', ' \u{25FE} ',' \u{25C8} ', ' \u{27A4} ',
 					    ' \u{2740} ', ' \u{2716} ', ' \u{2605} ', ' \u{21E8} ', ' \u{2665} ' ];
 		let bullet = bullets[0];
 		let rulesFmts = { header: false, bullets: false, lineBreaks: false };
-		let mainBtnsY = canvas.height/2 + 290;
 		let fmtBtnX = canvas.width/2 - infoBox.w/2 + buttonLH + 25;
 		let fmtBtnY = canvas.height/2 + 235;
-		let fmtBtns = { 	'AddHeader': 'H',
-							'AddLineBreaks': ' \u{2B0D} ',
-							'AddBullets':  '\u{22EE} ',
-							'ToggleBullets': ' \u{2022} '}
+		let fmtBtns = { 'AddHeader': 'H',
+						'AddLineBreaks': ' \u{2B0D} ',
+						'AddBullets':  '\u{22EE} ',
+						'ToggleBullets': ' \u{2022} '}
 
 		for (let btn in fmtBtns) {
 			buttons.push(new button(fmtBtnX, fmtBtnY, buttonLH, buttonLH, ['Edit Info'], btn, fmtBtns[btn]));
 			fmtBtnX += buttonLH + 10;
 		}
-
-		buttons.push(new button(canvas.width/2 - 175, mainBtnsY, 280, buttonLH, ['Edit Info'], 'GenerateRules', 'Generate Rules'));
-
 
 		let generateRuleset = function() {
 			let autoRuleset = '';
@@ -176,14 +174,8 @@
 		togglePopup = function(title) {
 
 			const confirmButton = buttons.filter(b => b.id === 'ConfirmInfo')[0];
-			confirmButton.x = canvas.width/2 + 175;
-			confirmButton.y = mainBtnsY;
-
-			const genRulesButton = buttons[buttons.findIndex(a => a.id === 'GenerateRules')];
-			genRulesButton.click = function() { 
-				if (genRulesButton.hovering())
-					generateRuleset();
-			}
+			confirmButton.x = canvas.width/2 + 150;
+			confirmButton.y = fmtBtnY;
 
 			const headerButton = buttons[buttons.findIndex(a => a.id === 'AddHeader')];
 			headerButton.click = function() { 
