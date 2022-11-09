@@ -15,7 +15,7 @@
 | --- | --- |
 | H | Add 'Normal sudoku rules apply.' header |
 | ┋ | Add bullets to rules list |
-| ⇕ | Add line breaks between rules |
-| ⚫| Change bullet style |
+| ↕ | Add line breaks between rules |
+| ⚫ | Change bullet style |
 
 
