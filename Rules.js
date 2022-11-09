@@ -1,3 +1,15 @@
+// ==UserScript==
+// @name		 Fpuzzles_Auto_Rules_Obj
+// @namespace	 http://tampermonkey.net/
+// @version		 1.0
+// @description  Data for automatic ruleset generation
+// @author		 Ennead
+// @match		 https://*.f-puzzles.com/*
+// @match		 https://f-puzzles.com/*
+// @icon		 data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @grant		 none
+// @run-at		 document-end
+// ==/UserScript==
 
 const rules = {
 
