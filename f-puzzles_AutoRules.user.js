@@ -2,7 +2,7 @@
 // @name		 Fpuzzles_Auto_Rules
 // @namespace	 http://tampermonkey.net/
 // @version		 1.0
-// @description  Enables automatic generation of puzzle ruleset 
+// @description  Adds automatic rule generation to 'Edit Info' popup 
 // @author		 Ennead
 // @match		 https://*.f-puzzles.com/*
 // @match		 https://f-puzzles.com/*
@@ -10,6 +10,7 @@
 // @grant		 none
 // @run-at		 document-end
 // ==/UserScript==
+
 
     //-------------------------------------------------------------------//
     //                                                                   //
@@ -140,15 +141,16 @@
 		let bullets = [ ' \u{2022} ', ' \u{25E6} ', ' \u{25FB} ', ' \u{25FE} ',' \u{25C8} ', ' \u{27A4} ',
 					    ' \u{2740} ', ' \u{2716} ', ' \u{2605} ', ' \u{21E8} ', ' \u{2665} ' ];
 		let bullet = bullets[0];
-		let rulesFmts = { 'header': false, 'bullets': false, 'lineBreaks': false };
+		let ruleFmts = { 'header': false, 'para': false, 'bullets': false, 'lineBreaks': false };
 		let savedFmts = {};
 		let fmtBtnX = canvas.width/2 - popups['editinfo'].w/2 + buttonLH + 25;
 		let fmtBtnY = canvas.height/2 + 235;
-		let fmtBtns = { 'AddHeader': 'H',
-		                'AddLineBreaks': ' \u{2B0D} ',
-		                'AddBullets':  '\u{22EE} ',
-		                'ToggleBullets': ' \u{2022} ',
-		                'Delete': ' \u{2327} '}
+		let fmtBtns = {	'AddHeader': 'H',
+		                'Paragraph': 'P',
+						'AddLineBreaks': ' \u{2B0D} ',
+						'AddBullets':  '\u{22EE} ',
+						'ToggleBullets': ' \u{2022} ',
+						'Delete': ' \u{2327} '}
 
 		for (let btn in fmtBtns) {
 			buttons.push(new button(fmtBtnX, fmtBtnY, buttonLH, buttonLH, ['Edit Info'], btn, fmtBtns[btn]));
@@ -158,38 +160,41 @@
 		let generateRuleset = function() {
 			let autoRuleset = '';
 			let ruleset = '';
+			let irregular = (getCells().some(a => a.region !== (Math.floor(a.i / regionH) * regionH) 
+							 + Math.floor(a.j / regionW)));
 
-			if (Object.keys(savedFmts).length) rulesFmts = savedFmts; 
+			if (Object.keys(savedFmts).length) ruleFmts = savedFmts; 
 
-			let head = (rulesFmts['bullets']) ? bullet : '';
-			head += (getCells().some(a => a.region !== (Math.floor(a.i / regionH) * regionH) + Math.floor(a.j / regionW))) ? 'Irregular ' : 'Normal ';
+			let head = (ruleFmts['bullets']) ? bullet : '';
+			head +=  (irregular) ? ' Irregular ' : ' Normal ';
 			head += 'sudoku rules apply.';
-			head += (rulesFmts['lineBreaks']) ? '\n\n' : '\n';
+			head += (ruleFmts['lineBreaks']) ? '\n\n' : '\n';
 
 			for (let constraint in rules) {
 				let c = constraints[cID(constraint)];
+
 				if ((Array.isArray(c) && c.length) || c === true) {
-					if (rulesFmts['bullets']) autoRuleset += bullet;
-					autoRuleset += rules[constraint];
-					autoRuleset += (rulesFmts['lineBreaks']) ? '\n\n' : '\n';
+					if (ruleFmts['bullets'] && !ruleFmts['para']) 
+						autoRuleset += bullet;
+					autoRuleset += ' ' + rules[constraint];
+					if (!ruleFmts['para'])
+						autoRuleset += (ruleFmts['lineBreaks']) ? '\n\n' : '\n';
 				}
 			}
 
-			ruleset = (rulesFmts['header']) ? head : '';
+			ruleset = (ruleFmts['header']) ? head : '';
 			document.getElementById('ruleset').value = ruleset + autoRuleset;
 		}
 
 		let doFmtButton = function(btn, fmt) {
-			if (btn.hovering()) {
-				if (Object.keys(savedFmts).length) rulesFmts = savedFmts; 
-				rulesFmts[fmt] = (rulesFmts[fmt]) ? false : true;
-				generateRuleset();
-			}
+			if (Object.keys(savedFmts).length) ruleFmts = savedFmts; 
+			ruleFmts[fmt] = (ruleFmts[fmt]) ? false : true;
+			generateRuleset();
 		}
 
 		let prevSetPuzzleInfo = setPuzzleInfo;
 		setPuzzleInfo = function() {
-			savedFmts = rulesFmts;
+			savedFmts = ruleFmts;
 			prevSetPuzzleInfo();
 		}
 
@@ -197,32 +202,50 @@
 		togglePopup = function(title) {
 
 			const confirmButton = buttons.filter(b => b.id === 'ConfirmInfo')[0];
-			confirmButton.x = canvas.width/2 + 150;
+			confirmButton.x = canvas.width/2 + 175;
 			confirmButton.y = fmtBtnY;
+			confirmButton.w = 220;
 
 			const headerButton = buttons[buttons.findIndex(a => a.id === 'AddHeader')];
 			headerButton.click = function() { 
-				doFmtButton(headerButton, 'header')
+				if (headerButton.hovering()) {
+					doFmtButton(headerButton, 'header')
+				}
+			}
+
+			const paraButton = buttons[buttons.findIndex(a => a.id === 'Paragraph')];
+			paraButton.click = function() { 
+				if (paraButton.hovering()) {
+					ruleFmts['bullets'] = false;
+					doFmtButton(paraButton, 'para');
+					paraButton.title = (ruleFmts['para']) ? 'L' : 'P';
+				}
 			}
 
 			const bulletsButton = buttons[buttons.findIndex(a => a.id === 'AddBullets')];
 			bulletsButton.click = function() { 
-				doFmtButton(bulletsButton, 'bullets')
+				if (bulletsButton.hovering()) {
+					ruleFmts['para'] = false;
+					paraButton.title = (ruleFmts['para']) ? 'L' : 'P';
+					doFmtButton(bulletsButton, 'bullets')
+				}
 			}
 
 			const lineBreaksButton = buttons[buttons.findIndex(a => a.id === 'AddLineBreaks')];
 			lineBreaksButton.click = function() { 
-				doFmtButton(lineBreaksButton, 'lineBreaks')
+				if (lineBreaksButton.hovering()) {
+					doFmtButton(lineBreaksButton, 'lineBreaks')
+				}
 			}
 
 			const toggleBulletsButton = buttons[buttons.findIndex(a => a.id === 'ToggleBullets')];
 			toggleBulletsButton.click = function() { 
 				let currB = bullets.indexOf(bullet);
 				if (toggleBulletsButton.hovering()) {
-					if (Object.keys(savedFmts).length) rulesFmts = savedFmts; 
+					if (Object.keys(savedFmts).length) ruleFmts = savedFmts; 
 					bullet = (currB === bullets.length - 1) ? bullets[0] : bullets[currB + 1];
 					toggleBulletsButton.title = bullet;
-					if (rulesFmts['bullets']) generateRuleset();
+					if (ruleFmts['bullets']) generateRuleset();
 				}
 			}
 
@@ -230,13 +253,14 @@
 			deleteButton.click = function() { 
 				if (deleteButton.hovering()) {
 					document.getElementById('ruleset').value = '';
-					rulesFmts = { 'header': false, 'bullets': false, 'lineBreaks': false };
+					ruleFmts = { 'header': false, 'para': false, 'bullets': false, 'lineBreaks': false };
 					savedFmts = {};
 					customRuleset = '';
+					paraButton.title = 'P';
 				}
 			}
 
-			rulesFmts = { 'header': false, 'bullets': false, 'lineBreaks': false };
+			ruleFmts = { 'header': false, 'para': false, 'bullets': false, 'lineBreaks': false };
 			prevTogglePopup(title);
 		}
 	}
