@@ -19,6 +19,7 @@
 |Button|Action|
 | --- | --- |
 | H | Add/remove 'Normal/Irregular sudoku rules apply.' header |
+| P/L | Format rules as a paragraph or as a list. |
 | ⋮ | Add/remove bullets to rules list |
 | ↨ | Add/remove line breaks between rules |
 | • | Change bullet style |
