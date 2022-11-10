@@ -147,10 +147,10 @@
 		let fmtBtnY = canvas.height/2 + 235;
 		let fmtBtns = {	'AddHeader': 'H',
 		                'Paragraph': 'P',
-						'AddLineBreaks': ' \u{2B0D} ',
-						'AddBullets':  '\u{22EE} ',
-						'ToggleBullets': ' \u{2022} ',
-						'Delete': ' \u{2327} '}
+                        'AddLineBreaks': ' \u{2B0D} ',
+                        'AddBullets':  '\u{22EE} ',
+                        'ToggleBullets': ' \u{2022} ',
+                        'Delete': ' \u{2327} '}
 
 		for (let btn in fmtBtns) {
 			buttons.push(new button(fmtBtnX, fmtBtnY, buttonLH, buttonLH, ['Edit Info'], btn, fmtBtns[btn]));
