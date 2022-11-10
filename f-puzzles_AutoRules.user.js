@@ -146,7 +146,7 @@
 		let fmtBtnX = canvas.width/2 - popups['editinfo'].w/2 + buttonLH + 25;
 		let fmtBtnY = canvas.height/2 + 235;
 		let fmtBtns = {	'AddHeader': 'H',
-		                'Paragraph': 'P',
+                        'Paragraph': 'P',
                         'AddLineBreaks': ' \u{2B0D} ',
                         'AddBullets':  '\u{22EE} ',
                         'ToggleBullets': ' \u{2022} ',
