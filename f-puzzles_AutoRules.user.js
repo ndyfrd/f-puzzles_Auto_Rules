@@ -72,7 +72,7 @@
 			"Digits along lines connecting diamonds must not be between or equal to the diamond digits.",
 
 		'Maximum':
-			"Cells with outward-facing arrows must contain lower digits than their orthogonal neighbours.",
+			"Cells with outward-facing arrows must contain higher digits than their orthogonal neighbours.",
 
 		'Minimum':		   
 			"Cells with inward-facing arrows must contain lower digits than their orthogonal neighbours.",
